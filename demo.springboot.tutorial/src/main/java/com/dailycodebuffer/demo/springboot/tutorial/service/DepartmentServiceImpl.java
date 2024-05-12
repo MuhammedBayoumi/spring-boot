@@ -4,11 +4,8 @@ import com.dailycodebuffer.demo.springboot.tutorial.entity.Department;
 import com.dailycodebuffer.demo.springboot.tutorial.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -52,6 +49,10 @@ public class DepartmentServiceImpl implements DepartmentService {
 
         if (Objects.nonNull(department.getDepartmentName()) && !"".equalsIgnoreCase(department.getDepartmentName())) {
             departmentDB.setDepartmentCode(department.getDepartmentName());
+        }
+
+        if (Objects.nonNull(department.getDepartmentEmail()) && !"".equalsIgnoreCase(department.getDepartmentEmail())) {
+            departmentDB.setDepartmentEmail(department.getDepartmentEmail());
         }
         departmentRepository.save(departmentDB);
 
