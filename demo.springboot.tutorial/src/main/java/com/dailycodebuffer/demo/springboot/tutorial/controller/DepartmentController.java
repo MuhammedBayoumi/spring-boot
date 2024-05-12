@@ -2,13 +2,14 @@ package com.dailycodebuffer.demo.springboot.tutorial.controller;
 
 import com.dailycodebuffer.demo.springboot.tutorial.entity.Department;
 import com.dailycodebuffer.demo.springboot.tutorial.service.DepartmentService;
-import jakarta.websocket.server.PathParam;
+import javax.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 public class DepartmentController {
@@ -16,8 +17,10 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
+    private final Logger LOGGER  = LoggerFactory.getLogger(DepartmentController.class);
     @PostMapping(value = "/departments")
-    public Department sawDepartment(@RequestBody Department department) {
+    public Department saveDepartment(@Valid @RequestBody Department department) {
+        LOGGER.info("Inside saveDepartment");
         return departmentService.saveDepartment(department);
     }
 
